@@ -1,47 +1,74 @@
+var studentNumberPattern;
+var emailPattern;
 
-const registrationForm = document.getElementById("registrationForm");
+var registrationForm;
+var studentName;
+var studentNumber;
+var email;
+var workshop;
+var terms;
 
-const studentName = document.getElementById("studentName");
-const studentNumber = document.getElementById("studentNumber");
-const email = document.getElementById("email");
-const workshop = document.getElementById("workshop");
-const terms = document.getElementById("terms");
+var nameError;
+var studentNumberError;
+var emailError;
+var workshopError;
+var termsError;
 
-const nameError = document.getElementById("nameError");
-const studentNumberError = document.getElementById("studentNumberError");
-const emailError = document.getElementById("emailError");
-const workshopError = document.getElementById("workshopError");
-const termsError = document.getElementById("termsError");
+var registerBtn;
+var clearBtn;
+var registrationResult;
 
-const registerBtn = document.getElementById("registerBtn");
-const clearBtn = document.getElementById("clearBtn");
+var summaryName;
+var summaryStudentNumber;
+var summaryEmail;
+var summaryWorkshop;
 
-const registrationResult = document.getElementById("registrationResult");
 
-const summaryName = document.getElementById("summaryName");
-const summaryStudentNumber = document.getElementById("summaryStudentNumber");
-const summaryEmail = document.getElementById("summaryEmail");
-const summaryWorkshop = document.getElementById("summaryWorkshop");
+// Get elements
+registrationForm = document.getElementById("registrationForm");
+
+studentName = document.getElementById("studentName");
+studentNumber = document.getElementById("studentNumber");
+email = document.getElementById("email");
+workshop = document.getElementById("workshop");
+terms = document.getElementById("terms");
+
+nameError = document.getElementById("nameError");
+studentNumberError = document.getElementById("studentNumberError");
+emailError = document.getElementById("emailError");
+workshopError = document.getElementById("workshopError");
+termsError = document.getElementById("termsError");
+
+registerBtn = document.getElementById("registerBtn");
+clearBtn = document.getElementById("clearBtn");
+
+registrationResult = document.getElementById("registrationResult");
+
+summaryName = document.getElementById("summaryName");
+summaryStudentNumber = document.getElementById("summaryStudentNumber");
+summaryEmail = document.getElementById("summaryEmail");
+summaryWorkshop = document.getElementById("summaryWorkshop");
 
 registrationResult.hidden = true;
 
 
-
+// Validation function
 function validateStudentInfo(name, studentNumber, email) {
-    const validName =
+
+    var validName =
         typeof name === "string" &&
         name.trim().length >= 3 &&
         !/\d/.test(name.trim()) &&
         name.trim() !== "";
 
-    const studentNumberPattern = /^\d{2}-\d{4}-\d{3}$/;
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    studentNumberPattern = /^\d{2}-\d{4}-\d{3}$/;
+    emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    const validStudentNumber =
+    var validStudentNumber =
         typeof studentNumber === "string" &&
         studentNumberPattern.test(studentNumber.trim());
 
-    const validEmail =
+    var validEmail =
         typeof email === "string" &&
         emailPattern.test(email.trim());
 
@@ -49,6 +76,7 @@ function validateStudentInfo(name, studentNumber, email) {
 }
 
 
+// Clear errors
 function clearErrors() {
     nameError.textContent = "";
     studentNumberError.textContent = "";
@@ -58,16 +86,18 @@ function clearErrors() {
 }
 
 
+// Submit form
 registrationForm.addEventListener("submit", function (event) {
+
     event.preventDefault();
 
     clearErrors();
 
-    const nameValue = studentName.value.trim();
-    const studentNumberValue = studentNumber.value.trim();
-    const emailValue = email.value.trim();
+    var nameValue = studentName.value.trim();
+    var studentNumberValue = studentNumber.value.trim();
+    var emailValue = email.value.trim();
 
-    let isValid = true;
+    var isValid = true;
 
     if (
         nameValue.length < 3 ||
@@ -78,7 +108,7 @@ registrationForm.addEventListener("submit", function (event) {
         isValid = false;
     }
 
-    const studentNumberPattern = /^\d{2}-\d{4}-\d{3}$/;
+    studentNumberPattern = /^\d{2}-\d{4}-\d{3}$/;
 
     if (!studentNumberPattern.test(studentNumberValue)) {
         studentNumberError.textContent =
@@ -86,7 +116,7 @@ registrationForm.addEventListener("submit", function (event) {
         isValid = false;
     }
 
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!emailPattern.test(emailValue)) {
         emailError.textContent = "Enter a valid email address.";
@@ -97,6 +127,7 @@ registrationForm.addEventListener("submit", function (event) {
         workshopError.textContent = "Please select a workshop.";
         isValid = false;
     }
+
     if (!terms.checked) {
         termsError.textContent =
             "You must accept the Terms and Conditions.";
@@ -108,7 +139,11 @@ registrationForm.addEventListener("submit", function (event) {
         return;
     }
 
-    if (!validateStudentInfo(nameValue, studentNumberValue, emailValue)) {
+    if (!validateStudentInfo(
+        nameValue,
+        studentNumberValue,
+        emailValue
+    )) {
         registrationResult.hidden = true;
         return;
     }
@@ -122,7 +157,9 @@ registrationForm.addEventListener("submit", function (event) {
 });
 
 
+// Clear button
 clearBtn.addEventListener("click", function () {
+
     studentName.value = "";
     studentNumber.value = "";
     email.value = "";
