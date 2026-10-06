@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Registration | Universidad de Dagupan</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="seal" aria-hidden="true">UDD</div>
+      <div>
+        <p class="school">Universidad de Dagupan</p>
+        <p class="college">School of Information Technology Education</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="intro">
+      <p class="eyebrow">ITP10 · Event-Driven Programming</p>
+      <h1>Student Registration</h1>
+      <p class="lede">Register for an IT seminar. A summary appears after every required field is valid.</p>
+    </div>
+
+    <form id="registrationForm" novalidate>
+      <section class="panel" aria-labelledby="detailsHeading">
+        <h2>Student details</h2>
+
+        <div class="field">
+          <label for="studentName">Student Name</label>
+          <input type="text" autocomplete="name" placeholder="e.g. Juan Dela Cruz">
+          <p class="error" role="alert"></p>
+        </div>
+
+        <div class="field">
+          <label for="studentNumber">Student Number</label>
+          <input type="text" autocomplete="off" placeholder="00-0000-000" spellcheck="false">
+          <p class="error" role="alert"></p>
+        </div>
+
+        <div class="field">
+          <label for="email">Email Address</label>
+          <input type="email" autocomplete="email" placeholder="name@university.edu">
+          <p class="error" role="alert"></p>
+        </div>
+
+        <div class="field">
+          <label for="workshop">Workshop</label>
+          <select>
+            <option value="" selected>Select Workshop</option>
+            <option value="Web Development">Web Development</option>
+            <option value="UI/UX Design">UI/UX Design</option>
+            <option value="Cybersecurity">Cybersecurity</option>
+          </select>
+          <p class="error" role="alert"></p>
+        </div>
+
+        <div class="field terms-field">
+          <label class="terms-label" for="terms">
+            <input type="checkbox">
+            <span>I accept the Terms and Conditions</span>
+          </label>
+          <p class="error" role="alert"></p>
+        </div>
+
+        <div class="actions">
+          <button type="submit">Register</button>
+          <button type="button">Clear</button>
+        </div>
+      </section>
+    </form>
+
+    <section id="registrationResult" class="result" hidden aria-live="polite">
+      <div class="result-heading">
+        <p class="eyebrow">Registration complete</p>
+        <h2>Registration Summary</h2>
+      </div>
+      <dl class="summary-list">
+        <div>
+          <dt>Student Name</dt>
+          <dd id="summaryName"></dd>
+        </div>
+        <div>
+          <dt>Student Number</dt>
+          <dd id="summaryStudentNumber"></dd>
+        </div>
+        <div>
+          <dt>Email Address</dt>
+          <dd id="summaryEmail"></dd>
+        </div>
+        <div>
+          <dt>Workshop</dt>
+          <dd id="summaryWorkshop"></dd>
+        </div>
+      </dl>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
